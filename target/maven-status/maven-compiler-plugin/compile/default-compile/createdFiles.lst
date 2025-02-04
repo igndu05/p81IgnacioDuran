@@ -1,0 +1,8 @@
+Aplicacion/MascotaDAO.class
+Conexion/Conexion.class
+Modelos/IVeterinario.class
+Aplicacion/VeterinarioDAO.class
+Modelos/IMascota.class
+Modelos/MascotaDTO.class
+Modelos/VeterinarioDTO.class
+Conexion/Prueba.class
