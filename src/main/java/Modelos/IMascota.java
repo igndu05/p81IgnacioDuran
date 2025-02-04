@@ -36,4 +36,7 @@ public interface IMascota {
     // con los nuevos datos que traiga la persona 'nuevosDatos'
     int updateMascota (int idnumMasc, MascotaDTO nuevosDatos) throws SQLException;
     
+    
+    //Metodo para obtener una lista de mascotas asociadas a un veterinario por ID
+    List<MascotaDTO> getMascotasByVeterinario (int idnumVet) throws SQLException;
 }

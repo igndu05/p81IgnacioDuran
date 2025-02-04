@@ -13,6 +13,7 @@ import java.util.Objects;
  */
 public class MascotaDTO {
     private int idnumMasc;
+    private int idnumVet;
     private int numChip;
     private String nomMasc;
     private double pesoMasc;
@@ -22,8 +23,9 @@ public class MascotaDTO {
     public MascotaDTO() {
     }
 
-    public MascotaDTO(int idnumMasc, int numChip, String nomMasc, double pesoMasc, LocalDate fecnacMasc, String tipoMasc) {
+    public MascotaDTO(int idnumMasc, int idnumVet, int numChip, String nomMasc, double pesoMasc, LocalDate fecnacMasc, String tipoMasc) {
         this.idnumMasc = idnumMasc;
+        this.idnumVet = idnumVet;
         this.numChip = numChip;
         this.nomMasc = nomMasc;
         this.pesoMasc = pesoMasc;
@@ -37,6 +39,14 @@ public class MascotaDTO {
 
     public void setIdnumMasc(int idnumMasc) {
         this.idnumMasc = idnumMasc;
+    }
+    
+    public int getIdnumVet() {
+        return idnumVet;
+    }
+    
+    public void setIdnumVet(int idnumVet) {
+        this.idnumVet = idnumVet;
     }
 
     public int getNumChip() {
@@ -81,18 +91,19 @@ public class MascotaDTO {
 
     @Override
     public String toString() {
-        return "MascotaDTO{" + "idnumMasc=" + idnumMasc + ", numChip=" + numChip + ", nomMasc=" + nomMasc + ", pesoMasc=" + pesoMasc + ", fecnacMasc=" + fecnacMasc + ", tipoMasc=" + tipoMasc + '}';
+        return "MascotaDTO{" + "idnumMasc=" + idnumMasc + ", idnumVet=" + idnumVet + ", numChip=" + numChip + ", nomMasc=" + nomMasc + ", pesoMasc=" + pesoMasc + ", fecnacMasc=" + fecnacMasc + ", tipoMasc=" + tipoMasc + '}';
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 29 * hash + this.idnumMasc;
-        hash = 29 * hash + this.numChip;
-        hash = 29 * hash + Objects.hashCode(this.nomMasc);
-        hash = 29 * hash + (int) (Double.doubleToLongBits(this.pesoMasc) ^ (Double.doubleToLongBits(this.pesoMasc) >>> 32));
-        hash = 29 * hash + Objects.hashCode(this.fecnacMasc);
-        hash = 29 * hash + Objects.hashCode(this.tipoMasc);
+        hash = 17 * hash + this.idnumMasc;
+        hash = 17 * hash + this.idnumVet;
+        hash = 17 * hash + this.numChip;
+        hash = 17 * hash + Objects.hashCode(this.nomMasc);
+        hash = 17 * hash + (int) (Double.doubleToLongBits(this.pesoMasc) ^ (Double.doubleToLongBits(this.pesoMasc) >>> 32));
+        hash = 17 * hash + Objects.hashCode(this.fecnacMasc);
+        hash = 17 * hash + Objects.hashCode(this.tipoMasc);
         return hash;
     }
 
@@ -111,6 +122,9 @@ public class MascotaDTO {
         if (this.idnumMasc != other.idnumMasc) {
             return false;
         }
+        if (this.idnumVet != other.idnumVet) {
+            return false;
+        }
         if (this.numChip != other.numChip) {
             return false;
         }
@@ -124,7 +138,6 @@ public class MascotaDTO {
             return false;
         }
         return Objects.equals(this.fecnacMasc, other.fecnacMasc);
-    }
-    
+    }    
     
 }

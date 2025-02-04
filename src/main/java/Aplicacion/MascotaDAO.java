@@ -218,6 +218,28 @@ public class MascotaDAO implements IMascota {
         }
     }
 
+    @Override
+    public List<MascotaDTO> getMascotasByVeterinario(int idnumVet) throws SQLException {
+        List<MascotaDTO> lista = new ArrayList <>();
+        String sql = "select * from mascota where idnumVet = ?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, idnumVet);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                MascotaDTO m = new MascotaDTO();
+                m.setIdnumMasc(rs.getInt("id"));
+                m.setNumChip(rs.getInt("numchip"));
+                m.setNomMasc(rs.getString("nombre"));
+                m.setPesoMasc(rs.getDouble("peso"));
+                m.setFecnacMasc(rs.getDate("fecha_nac").toLocalDate());
+                m.setTipoMasc(rs.getString("tipo"));
+                m.setIdnumVet(rs.getInt("id veterinario"));
+                lista.add(m);
+            }
+        }
+        return lista;
+    }
+
     
 }
 
