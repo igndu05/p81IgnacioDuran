@@ -11,7 +11,7 @@ import java.util.Objects;
  * @author ignacio
  */
 
-public class VeterinarioDTO {
+public class VeterinariosDTO {
     private int idnumVet;
     private String nif;
     private String nomVet;
@@ -19,7 +19,7 @@ public class VeterinarioDTO {
     private int tlfnVet;
     private String emailVet;
 
-    public VeterinarioDTO(int idnumVet, String nif, String nomVet, String dirVet, int tlfnVet, String emailVet) {
+    public VeterinariosDTO(int idnumVet, String nif, String nomVet, String dirVet, int tlfnVet, String emailVet) {
         this.idnumVet = idnumVet;
         this.nif = nif;
         this.nomVet = nomVet;
@@ -28,7 +28,7 @@ public class VeterinarioDTO {
         this.emailVet = emailVet;
     }
 
-    public VeterinarioDTO() {
+    public VeterinariosDTO() {
     }
 
     public int getIdnumVet() {
@@ -102,7 +102,7 @@ public class VeterinarioDTO {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final VeterinarioDTO other = (VeterinarioDTO) obj;
+        final VeterinariosDTO other = (VeterinariosDTO) obj;
         if (this.idnumVet != other.idnumVet) {
             return false;
         }
@@ -123,7 +123,7 @@ public class VeterinarioDTO {
 
     @Override
     public String toString() {
-        return "VeterinarioDTO{" + "idnumVet=" + idnumVet + ", nif=" + nif + ", nomVet=" + nomVet + ", dirVet=" + dirVet + ", tlfnVet=" + tlfnVet + ", emailVet=" + emailVet + '}';
+        return "VeterinariosDTO{" + "idnumVet=" + idnumVet + ", nif=" + nif + ", nomVet=" + nomVet + ", dirVet=" + dirVet + ", tlfnVet=" + tlfnVet + ", emailVet=" + emailVet + '}';
     }
     
     

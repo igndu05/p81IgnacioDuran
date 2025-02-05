@@ -12,31 +12,31 @@ import java.util.List;
  * @author ignacio
  */
 
-public interface IMascota {
+public interface IMascotas {
     
     // Método para obtener todos los registros de la tabla
-    List<MascotaDTO> getAll() throws SQLException;
+    List<MascotasDTO> getAll() throws SQLException;
     
     // Méodo para obtener un registro a partir de la PK
-    MascotaDTO findById(int idnumMasc) throws SQLException;
+    MascotasDTO findById(int idnumMasc) throws SQLException;
     
     // Método para insertar un registro
-    int insertMascota (MascotaDTO mascota) throws SQLException;
+    int insertMascotas (MascotasDTO mascota) throws SQLException;
     
     // Método para insertar varios registros
-    int insertMascota (List<MascotaDTO> lista) throws SQLException;
+    int insertMascotas (List<MascotasDTO> lista) throws SQLException;
     
     // Método para borrar una persona
-    int deleteMascota (MascotaDTO p) throws SQLException;
+    int deleteMascotas (MascotasDTO p) throws SQLException;
     
     // Método para borrar toda la tabla
-    int deleteMascota() throws SQLException;
+    int deleteMascotas() throws SQLException;
     
     // Método para modificar una persona. Se modifica a la persona que tenga esa 'pk'
     // con los nuevos datos que traiga la persona 'nuevosDatos'
-    int updateMascota (int idnumMasc, MascotaDTO nuevosDatos) throws SQLException;
+    int updateMascotas (int idnumMasc, MascotasDTO nuevosDatos) throws SQLException;
     
     
     //Metodo para obtener una lista de mascotas asociadas a un veterinario por ID
-    List<MascotaDTO> getMascotasByVeterinario (int idnumVet) throws SQLException;
+    List<MascotasDTO> getMascotasByVeterinarios (int idnumVet) throws SQLException;
 }

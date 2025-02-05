@@ -1,10 +1,10 @@
 /*
  * Clase que implementa la interface IPersona
  */
-package Aplicacion;
+package Controladores;
 
-import Modelos.IVeterinario;
-import Modelos.VeterinarioDTO;
+import Modelos.IVeterinarios;
+import Modelos.VeterinariosDTO;
 import Conexion.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,33 +18,33 @@ import java.util.List;
  *
  * @author ignacio
  */
-public class VeterinarioDAO implements IVeterinario {
+public class VeterinariosDAO implements IVeterinarios {
 
     private Connection con = null;
 
-    public VeterinarioDAO() {
+    public VeterinariosDAO() {
         con = Conexion.getInstance();
     }
 
     @Override
-    public List<VeterinarioDTO> getAll() throws SQLException {
-        List<VeterinarioDTO> lista = new ArrayList<>();
+    public List<VeterinariosDTO> getAll() throws SQLException {
+        List<VeterinariosDTO> lista = new ArrayList<>();
 
         // Preparamos la consulta de datos mediante un objeto Statement
         // ya que no necesitamos parametrizar la sentencia SQL
         try (Statement st = con.createStatement()) {
             // Ejecutamos la sentencia y obtenemos las filas en el objeto ResultSet
-            ResultSet res = st.executeQuery("select * from persona");
+            ResultSet res = st.executeQuery("select * from veterinarios");
             // Ahora construimos la lista, recorriendo el ResultSet y mapeando los datos
             while (res.next()) {
-                VeterinarioDTO v = new VeterinarioDTO();
+                VeterinariosDTO v = new VeterinariosDTO();
                 // Recogemos los datos de la persona, guardamos en un objeto
-                v.setIdnumVet(res.getInt("ID Numero Vet"));
-                v.setNif(res.getString("NIF"));
-                v.setNomVet(res.getString("Nombre"));
-                v.setDirVet(res.getString("Direccion"));
-                v.setTlfnVet(res.getInt("Telefono"));
-                v.setEmailVet(res.getString("Email"));
+                v.setIdnumVet(res.getInt("idnumVet"));
+                v.setNif(res.getString("nif"));
+                v.setNomVet(res.getString("nomVet"));
+                v.setDirVet(res.getString("dirVet"));
+                v.setTlfnVet(res.getInt("tlfnVet"));
+                v.setEmailVet(res.getString("emailVet"));
                 //Añadimos el objeto a la lista
                 lista.add(v);
             }
@@ -58,7 +58,7 @@ public class VeterinarioDAO implements IVeterinario {
     public int getLastInsertedId() throws SQLException {
         int lastId = 0; // Valor predeterminado si no hay registros
 
-        String query = "SELECT MAX(idnumVet) AS idnumVet FROM veterinario";
+        String query = "SELECT MAX(idnumVet) AS idnumVet FROM veterinarios";
 
         PreparedStatement statement = con.prepareStatement(query);
         ResultSet resultSet = statement.executeQuery();
@@ -71,12 +71,12 @@ public class VeterinarioDAO implements IVeterinario {
     }
 
     @Override
-    public VeterinarioDTO findById(int idnumVet) throws SQLException {
+    public VeterinariosDTO findById(int idnumVet) throws SQLException {
 
         ResultSet res = null;
-        VeterinarioDTO veterinario = new VeterinarioDTO();
+        VeterinariosDTO veterinario = new VeterinariosDTO();
 
-        String sql = "select * from veterinario where pk = ?";
+        String sql = "select * from veterinarios where idnumVet = ?";
 
         try (PreparedStatement prest = con.prepareStatement(sql)) {
             // Preparamos la sentencia parametrizada
@@ -92,12 +92,12 @@ public class VeterinarioDAO implements IVeterinario {
 //                persona.setPk(res.getInt("pk"));
 //                persona.setNombre(res.getString("nombre"));
 //                persona.setFechaNacimiento(res.getDate("fecha_nac").toLocalDate());
-                veterinario.setIdnumVet(res.getInt("ID Numero Vet"));
-                veterinario.setNif(res.getString("NIF"));
-                veterinario.setNomVet(res.getString("Nombre"));
-                veterinario.setDirVet(res.getString("Direccion"));
-                veterinario.setTlfnVet(res.getInt("Telefono"));
-                veterinario.setEmailVet(res.getString("Email"));
+                veterinario.setIdnumVet(res.getInt("idnumVet"));
+                veterinario.setNif(res.getString("nif"));
+                veterinario.setNomVet(res.getString("nomVet"));
+                veterinario.setDirVet(res.getString("dirVet"));
+                veterinario.setTlfnVet(res.getInt("tlfnVet"));
+                veterinario.setEmailVet(res.getString("emailVet"));
                 return veterinario;
             }
 
@@ -106,10 +106,10 @@ public class VeterinarioDAO implements IVeterinario {
     }
 
     @Override
-    public int insertVeterinario(VeterinarioDTO veterinario) throws SQLException {
+    public int insertVeterinarios(VeterinariosDTO veterinario) throws SQLException {
 
         int numFilas = 0;
-        String sql = "insert into veterinario values (?,?,?)";
+        String sql = "insert into veterinarios values (idnumVet, nif, nomVet, dirVet, tlfnVet, emailVet)";
 
         if (findById(veterinario.getIdnumVet()) != null) {
             // Existe un registro con esa pk
@@ -139,20 +139,20 @@ public class VeterinarioDAO implements IVeterinario {
     }
 
     @Override
-    public int insertVeterinario(List<VeterinarioDTO> lista) throws SQLException {
+    public int insertVeterinarios(List<VeterinariosDTO> lista) throws SQLException {
         int numFilas = 0;
 
-        for (VeterinarioDTO tmp : lista) {
-            numFilas += insertVeterinario(tmp);
+        for (VeterinariosDTO tmp : lista) {
+            numFilas += insertVeterinarios(tmp);
         }
 
         return numFilas;
     }
 
     @Override
-    public int deleteVeterinario() throws SQLException {
+    public int deleteVeterinarios() throws SQLException {
 
-        String sql = "delete from veterinario";
+        String sql = "delete from veterinarios";
 
         int nfilas = 0;
 
@@ -169,10 +169,10 @@ public class VeterinarioDAO implements IVeterinario {
     }
 
     @Override
-    public int deleteVeterinario(VeterinarioDTO veterinario) throws SQLException {
+    public int deleteVeterinarios(VeterinariosDTO veterinario) throws SQLException {
         int numFilas = 0;
 
-        String sql = "delete from veterinario where pk = ?";
+        String sql = "delete from veterinarios where idnumVet = ?";
 
         // Sentencia parametrizada
         try (PreparedStatement prest = con.prepareStatement(sql)) {
@@ -186,10 +186,10 @@ public class VeterinarioDAO implements IVeterinario {
     }
 
     @Override
-    public int updateVeterinario(int idnumVet, VeterinarioDTO nuevosDatos) throws SQLException {
+    public int updateVeterinarios(int idnumVet, VeterinariosDTO nuevosDatos) throws SQLException {
 
         int numFilas = 0;
-        String sql = "update veterinario set nif = ?, nomVet = ?, dirVet = ?, tlfnVet = ?, emailVet = ? where idnumVet = ?";
+        String sql = "update veterinarios set nif = ?, nomVet = ?, dirVet = ?, tlfnVet = ?, emailVet = ? where idnumVet = ?";
 
         if (findById(idnumVet) == null) {
             // La persona a actualizar no existe

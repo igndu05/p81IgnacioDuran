@@ -12,28 +12,28 @@ import java.util.List;
  * @author ignacio
  */
 
-public interface IVeterinario {
+public interface IVeterinarios {
     
     // Método para obtener todos los registros de la tabla
-    List<VeterinarioDTO> getAll() throws SQLException;
+    List<VeterinariosDTO> getAll() throws SQLException;
     
     // Méodo para obtener un registro a partir de la PK
-    VeterinarioDTO findById(int idnumVet) throws SQLException;
+    VeterinariosDTO findById(int idnumVet) throws SQLException;
     
     // Método para insertar un registro
-    int insertVeterinario (VeterinarioDTO veterinario) throws SQLException;
+    int insertVeterinarios (VeterinariosDTO veterinario) throws SQLException;
     
     // Método para insertar varios registros
-    int insertVeterinario (List<VeterinarioDTO> lista) throws SQLException;
+    int insertVeterinarios (List<VeterinariosDTO> lista) throws SQLException;
     
     // Método para borrar una persona
-    int deleteVeterinario (VeterinarioDTO p) throws SQLException;
+    int deleteVeterinarios (VeterinariosDTO p) throws SQLException;
     
     // Método para borrar toda la tabla
-    int deleteVeterinario() throws SQLException;
+    int deleteVeterinarios() throws SQLException;
     
     // Método para modificar una persona. Se modifica a la persona que tenga esa 'pk'
     // con los nuevos datos que traiga la persona 'nuevosDatos'
-    int updateVeterinario (int idnumVet, VeterinarioDTO nuevosDatos) throws SQLException;
+    int updateVeterinarios (int idnumVet, VeterinariosDTO nuevosDatos) throws SQLException;
     
 }

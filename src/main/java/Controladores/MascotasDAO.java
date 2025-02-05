@@ -1,12 +1,12 @@
 /*
  * Clase que implementa la interface IPersona
  */
-package Aplicacion;
+package Controladores;
 
-import Modelos.IMascota;
-import Modelos.MascotaDTO;
+import Modelos.IMascotas;
+import Modelos.MascotasDTO;
 import Conexion.Conexion;
-import Modelos.MascotaDTO;
+import Modelos.MascotasDTO;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -20,33 +20,34 @@ import java.util.List;
  *
  * @author ignacio
  */
-public class MascotaDAO implements IMascota {
+public class MascotasDAO implements IMascotas {
 
     private Connection con = null;
 
-    public MascotaDAO() {
+    public MascotasDAO() {
         con = Conexion.getInstance();
     }
 
     @Override
-    public List<MascotaDTO> getAll() throws SQLException {
-        List<MascotaDTO> lista = new ArrayList<>();
+    public List<MascotasDTO> getAll() throws SQLException {
+        List<MascotasDTO> lista = new ArrayList<>();
 
         // Preparamos la consulta de datos mediante un objeto Statement
         // ya que no necesitamos parametrizar la sentencia SQL
         try (Statement st = con.createStatement()) {
             // Ejecutamos la sentencia y obtenemos las filas en el objeto ResultSet
-            ResultSet res = st.executeQuery("select * from persona");
+            ResultSet res = st.executeQuery("select * from mascotas");
             // Ahora construimos la lista, recorriendo el ResultSet y mapeando los datos
             while (res.next()) {
-                MascotaDTO v = new MascotaDTO();
+                MascotasDTO v = new MascotasDTO();
                 // Recogemos los datos de la persona, guardamos en un objeto
-                v.setIdnumMasc(res.getInt("ID Numero Masc"));
-                v.setNumChip(res.getInt("Numero chip"));
-                v.setNomMasc(res.getString("Nombre"));
-                v.setPesoMasc(res.getDouble("0.0"));
-                v.setFecnacMasc(res.getDate("Fecha_nac").toLocalDate());
-                v.setTipoMasc(res.getString("Tipo"));
+                v.setIdnumMasc(res.getInt("idnumMasc"));
+                v.setIdnumVet(res.getInt("idnumVet"));
+                v.setNumChip(res.getInt("numChip"));
+                v.setNomMasc(res.getString("nomMasc"));
+                v.setPesoMasc(res.getDouble("pesoMasc"));
+                v.setFecnacMasc(res.getDate("fecnacMasc").toLocalDate());
+                v.setTipoMasc(res.getString("tipoMasc"));
                 //Añadimos el objeto a la lista
                 lista.add(v);
             }
@@ -60,25 +61,25 @@ public class MascotaDAO implements IMascota {
     public int getLastInsertedId() throws SQLException {
         int lastId = 0; // Valor predeterminado si no hay registros
 
-        String query = "SELECT MAX(idnumMasc) AS idnumMasc FROM mascota";
+        String query = "SELECT MAX(idnumMasc) AS idnumMasc FROM mascotas";
 
         PreparedStatement statement = con.prepareStatement(query);
         ResultSet resultSet = statement.executeQuery();
 
         if (resultSet.next()) {
-            lastId = resultSet.getInt("idnumVet");
+            lastId = resultSet.getInt("idnumMasc");
         }
 
         return lastId;
     }
 
     @Override
-    public MascotaDTO findById(int idnumMasc) throws SQLException {
+    public MascotasDTO findById(int idnumMasc) throws SQLException {
 
         ResultSet res = null;
-        MascotaDTO mascota = new MascotaDTO();
+        MascotasDTO mascota = new MascotasDTO();
 
-        String sql = "select * from mascota where pk = ?";
+        String sql = "select * from mascotas where idnumMasc = ?";
 
         try (PreparedStatement prest = con.prepareStatement(sql)) {
             // Preparamos la sentencia parametrizada
@@ -94,12 +95,13 @@ public class MascotaDAO implements IMascota {
 //                persona.setPk(res.getInt("pk"));
 //                persona.setNombre(res.getString("nombre"));
 //                persona.setFechaNacimiento(res.getDate("fecha_nac").toLocalDate());
-                mascota.setIdnumMasc(res.getInt("ID Numero Masc"));
-                mascota.setNumChip(res.getInt("Numero chip"));
-                mascota.setNomMasc(res.getString("Nombre"));
-                mascota.setPesoMasc(res.getDouble("0.0"));
-                mascota.setFecnacMasc(res.getDate("Fecha_nac").toLocalDate());
-                mascota.setTipoMasc(res.getString("Tipo"));
+                mascota.setIdnumMasc(res.getInt("idnumMasc"));
+                mascota.setIdnumVet(res.getInt("idnumVet"));
+                mascota.setNumChip(res.getInt("numChip"));
+                mascota.setNomMasc(res.getString("nomMasc"));
+                mascota.setPesoMasc(res.getDouble("pesoMasc"));
+                mascota.setFecnacMasc(res.getDate("fecnacMasc").toLocalDate());
+                mascota.setTipoMasc(res.getString("tipoMasc"));
                 return mascota;
             }
 
@@ -108,10 +110,10 @@ public class MascotaDAO implements IMascota {
     }
 
     @Override
-    public int insertMascota(MascotaDTO mascota) throws SQLException {
+    public int insertMascotas(MascotasDTO mascota) throws SQLException {
 
         int numFilas = 0;
-        String sql = "insert into mascota values (?,?,?)";
+        String sql = "insert into mascotas values (idnumMasc, idnumVet, numChip, nomMasc, pesoMasc, fecnacMasc, tipoMasc)";
 
         if (findById(mascota.getIdnumMasc()) != null) {
             // Existe un registro con esa pk
@@ -127,11 +129,12 @@ public class MascotaDAO implements IMascota {
 //                prest.setString(2, persona.getNombre());
 //                prest.setDate(3, Date.valueOf(persona.getFechaNacimiento()));
                 prest.setInt(1, mascota.getIdnumMasc());
-                prest.setInt(2, mascota.getNumChip());
-                prest.setString(3, mascota.getNomMasc());
-                prest.setDouble(4, mascota.getPesoMasc());
-                prest.setDate(5, Date.valueOf(mascota.getFecnacMasc()));
-                prest.setString(6, mascota.getTipoMasc());
+                prest.setInt(2, mascota.getIdnumVet());
+                prest.setInt(3, mascota.getNumChip());
+                prest.setString(4, mascota.getNomMasc());
+                prest.setDouble(5, mascota.getPesoMasc());
+                prest.setDate(6, Date.valueOf(mascota.getFecnacMasc()));
+                prest.setString(7, mascota.getTipoMasc());
 
                 numFilas = prest.executeUpdate();
             }
@@ -141,20 +144,20 @@ public class MascotaDAO implements IMascota {
     }
 
     @Override
-    public int insertMascota(List<MascotaDTO> lista) throws SQLException {
+    public int insertMascotas(List<MascotasDTO> lista) throws SQLException {
         int numFilas = 0;
 
-        for (MascotaDTO tmp : lista) {
-            numFilas += insertMascota(tmp);
+        for (MascotasDTO tmp : lista) {
+            numFilas += insertMascotas(tmp);
         }
 
         return numFilas;
     }
 
     @Override
-    public int deleteMascota() throws SQLException {
+    public int deleteMascotas() throws SQLException {
 
-        String sql = "delete from mascota";
+        String sql = "delete from mascotas";
 
         int nfilas = 0;
 
@@ -171,10 +174,10 @@ public class MascotaDAO implements IMascota {
     }
 
     @Override
-    public int deleteMascota(MascotaDTO mascota) throws SQLException {
+    public int deleteMascotas(MascotasDTO mascota) throws SQLException {
         int numFilas = 0;
 
-        String sql = "delete from mascota where idnumMasc = ?";
+        String sql = "delete from mascotas where idnumMasc = ?";
 
         // Sentencia parametrizada
         try (PreparedStatement prest = con.prepareStatement(sql)) {
@@ -188,10 +191,10 @@ public class MascotaDAO implements IMascota {
     }
 
     @Override
-    public int updateMascota(int idnumMasc, MascotaDTO nuevosDatos) throws SQLException {
+    public int updateMascotas(int idnumMasc, MascotasDTO nuevosDatos) throws SQLException {
 
         int numFilas = 0;
-        String sql = "update mascota set numchip = ?, nomMasc = ?, pesoMasc = ?, fecNacMasc = ?, tipoMasc = ? where idnumMasc = ?";
+        String sql = "update mascotas set numchip = ?, nomMasc = ?, pesoMasc = ?, fecNacMasc = ?, tipoMasc = ? where idnumMasc = ?";
 
         if (findById(idnumMasc) == null) {
             // La persona a actualizar no existe
@@ -219,14 +222,14 @@ public class MascotaDAO implements IMascota {
     }
 
     @Override
-    public List<MascotaDTO> getMascotasByVeterinario(int idnumVet) throws SQLException {
-        List<MascotaDTO> lista = new ArrayList <>();
-        String sql = "select * from mascota where idnumVet = ?";
+    public List<MascotasDTO> getMascotasByVeterinarios(int idnumVet) throws SQLException {
+        List<MascotasDTO> lista = new ArrayList <>();
+        String sql = "select * from mascotas where idnumVet = ?";
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, idnumVet);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                MascotaDTO m = new MascotaDTO();
+                MascotasDTO m = new MascotasDTO();
                 m.setIdnumMasc(rs.getInt("id"));
                 m.setNumChip(rs.getInt("numchip"));
                 m.setNomMasc(rs.getString("nombre"));

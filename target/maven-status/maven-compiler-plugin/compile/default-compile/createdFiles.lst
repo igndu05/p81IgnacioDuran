@@ -1,8 +1,9 @@
-Aplicacion/MascotaDAO.class
+Controladores/prueba.class
 Conexion/Conexion.class
-Modelos/IVeterinario.class
-Aplicacion/VeterinarioDAO.class
-Modelos/IMascota.class
-Modelos/MascotaDTO.class
-Modelos/VeterinarioDTO.class
+Controladores/VeterinariosDAO.class
+Modelos/MascotasDTO.class
+Modelos/VeterinariosDTO.class
+Controladores/MascotasDAO.class
+Modelos/IMascotas.class
+Modelos/IVeterinarios.class
 Conexion/Prueba.class

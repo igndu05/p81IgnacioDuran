@@ -11,7 +11,7 @@ import java.util.Objects;
  *
  * @author ignacio
  */
-public class MascotaDTO {
+public class MascotasDTO {
     private int idnumMasc;
     private int idnumVet;
     private int numChip;
@@ -20,10 +20,10 @@ public class MascotaDTO {
     private LocalDate fecnacMasc;
     private String tipoMasc;
 
-    public MascotaDTO() {
+    public MascotasDTO() {
     }
 
-    public MascotaDTO(int idnumMasc, int idnumVet, int numChip, String nomMasc, double pesoMasc, LocalDate fecnacMasc, String tipoMasc) {
+    public MascotasDTO(int idnumMasc, int idnumVet, int numChip, String nomMasc, double pesoMasc, LocalDate fecnacMasc, String tipoMasc) {
         this.idnumMasc = idnumMasc;
         this.idnumVet = idnumVet;
         this.numChip = numChip;
@@ -118,7 +118,7 @@ public class MascotaDTO {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final MascotaDTO other = (MascotaDTO) obj;
+        final MascotasDTO other = (MascotasDTO) obj;
         if (this.idnumMasc != other.idnumMasc) {
             return false;
         }
