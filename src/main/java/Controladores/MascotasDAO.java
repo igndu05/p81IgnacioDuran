@@ -94,7 +94,7 @@ public class MascotasDAO implements IMascotas {
                 // Recogemos los datos de la persona, guardamos en un objeto
 //                persona.setPk(res.getInt("pk"));
 //                persona.setNombre(res.getString("nombre"));
-//                persona.setFechaNacimiento(res.getDate("fecha_nac").toLocalDate());
+//                persona.setFechaNacimiento(res.getDate("fecha_nac").toLocalDate())
                 mascota.setIdnumMasc(res.getInt("idnumMasc"));
                 mascota.setIdnumVet(res.getInt("idnumVet"));
                 mascota.setNumChip(res.getInt("numChip"));
