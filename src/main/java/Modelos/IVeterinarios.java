@@ -27,7 +27,7 @@ public interface IVeterinarios {
     int insertVeterinarios (List<VeterinariosDTO> lista) throws SQLException;
     
     // Método para borrar una persona
-    int deleteVeterinarios (VeterinariosDTO p) throws SQLException;
+    int deleteVeterinarios (int idNumVet) throws SQLException;
     
     // Método para borrar toda la tabla
     int deleteVeterinarios() throws SQLException;

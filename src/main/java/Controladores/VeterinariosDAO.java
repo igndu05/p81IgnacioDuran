@@ -169,7 +169,7 @@ public class VeterinariosDAO implements IVeterinarios {
     }
 
     @Override
-    public int deleteVeterinarios(VeterinariosDTO veterinario) throws SQLException {
+    public int deleteVeterinarios(int idNumVet) throws SQLException {
         int numFilas = 0;
 
         String sql = "delete from veterinarios where idnumVet = ?";
@@ -178,7 +178,7 @@ public class VeterinariosDAO implements IVeterinarios {
         try (PreparedStatement prest = con.prepareStatement(sql)) {
 
             // Establecemos los parámetros de la sentencia
-            prest.setInt(1, veterinario.getIdnumVet());
+            prest.setInt(1, idNumVet);
             // Ejecutamos la sentencia
             numFilas = prest.executeUpdate();
         }

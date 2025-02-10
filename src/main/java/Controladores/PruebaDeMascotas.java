@@ -41,8 +41,8 @@ public class PruebaDeMascotas {
             System.out.println(mascota.findById(1));
             System.out.println("-----------------------------------------");
             System.out.println("Se va a borrar la persona con pk 3");
-            System.out.println("Nº personas borradas " + 
-                    mascota.deleteMascotas(new MascotasDTO(3, 1, 3, "Jesus", 30.00, LocalDate.of(2018, Month.MARCH, 15), "Loro")));
+            System.out.println("Nº personas borradas - >" + 
+                    mascota.deleteMascotas(3));
             System.out.println("-----------------------------------------");
             nuevaLista = mascota.getAll();
             System.out.println("-------- Lista con datos recogidos desde la B.D despues de borrar una mascota -------------");

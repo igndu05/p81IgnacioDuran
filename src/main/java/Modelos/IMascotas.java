@@ -27,7 +27,7 @@ public interface IMascotas {
     int insertMascotas (List<MascotasDTO> lista) throws SQLException;
     
     // Método para borrar una persona
-    int deleteMascotas (MascotasDTO p) throws SQLException;
+    int deleteMascotas (int idMascota) throws SQLException;
     
     // Método para borrar toda la tabla
     int deleteMascotas() throws SQLException;

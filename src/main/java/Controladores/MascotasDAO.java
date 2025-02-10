@@ -174,7 +174,7 @@ public class MascotasDAO implements IMascotas {
     }
 
     @Override
-    public int deleteMascotas(MascotasDTO mascota) throws SQLException {
+    public int deleteMascotas(int idMascota) throws SQLException {
         int numFilas = 0;
 
         String sql = "delete from mascotas where idnumMasc = ?";
@@ -183,7 +183,7 @@ public class MascotasDAO implements IMascotas {
         try (PreparedStatement prest = con.prepareStatement(sql)) {
 
             // Establecemos los parámetros de la sentencia
-            prest.setInt(1, mascota.getIdnumMasc());
+            prest.setInt(1, idMascota);
             // Ejecutamos la sentencia
             numFilas = prest.executeUpdate();
         }
