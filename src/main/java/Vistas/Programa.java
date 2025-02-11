@@ -186,6 +186,7 @@ public class Programa {
     // Agregar un nuevo veterinario
     private static void agregarVeterinario() {
         try {
+            int id = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del veterinario: "));
             String nif = JOptionPane.showInputDialog("Ingrese NIF del veterinario:");
             String nombre = JOptionPane.showInputDialog("Ingrese nombre del veterinario:");
             String direccion = JOptionPane.showInputDialog("Ingrese dirección del veterinario:");
@@ -193,6 +194,7 @@ public class Programa {
             String email = JOptionPane.showInputDialog("Ingrese email del veterinario:");
 
             VeterinariosDTO nuevoVeterinario = new VeterinariosDTO();
+            nuevoVeterinario.setIdnumVet(id);
             nuevoVeterinario.setNif(nif);
             nuevoVeterinario.setNomVet(nombre);
             nuevoVeterinario.setDirVet(direccion);
