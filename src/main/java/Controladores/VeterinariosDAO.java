@@ -109,7 +109,8 @@ public class VeterinariosDAO implements IVeterinarios {
     public int insertVeterinarios(VeterinariosDTO veterinario) throws SQLException {
 
         int numFilas = 0;
-        String sql = "insert into veterinarios values (idnumVet, nif, nomVet, dirVet, tlfnVet, emailVet)";
+//        String sql = "insert into veterinarios values (idnumVet, nif, nomVet, dirVet, tlfnVet, emailVet)";
+        String sql = "insert into veterinarios (idnumVet, nif, nomVet, dirVet, tlfnVet, emailVet) VALUES (?, ?, ?, ?, ?, ?)";
 
         if (findById(veterinario.getIdnumVet()) != null) {
             // Existe un registro con esa pk

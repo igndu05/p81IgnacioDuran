@@ -19,49 +19,57 @@ public class Programa {
     public static void main(String[] args) {
         while (true) {
             String menu = "---- Menú ----\n"
-                    + "1. Listar mascotas\n"
-                    + "2. Listar veterinarios\n"
-                    + "3. Agregar mascota\n"
-                    + "4. Agregar veterinario\n"
-                    + "5. Asignar veterinario a mascota\n"
-                    + "6. Eliminar mascota\n"
-                    + "7. Eliminar veterinario\n"
-                    + "8. Actualizar mascota\n"
-                    + "9. Actualizar veterinario\n"
-                    + "0. Salir";
+                    + "1.- Ver datos de 1 mascota\n"
+                    + "2.- Ver datos de 1 veterinario\n"
+                    + "3. Listar mascotas\n"
+                    + "4. Listar veterinarios\n"
+                    + "5. Agregar mascota\n"
+                    + "6. Agregar veterinario\n"
+                    + "7. Asignar veterinario a mascota\n"
+                    + "8. Eliminar mascota\n"
+                    + "9. Eliminar veterinario\n"
+                    + "10. Actualizar mascota\n"
+                    + "11. Actualizar veterinario\n"
+                    + "12. Salir";
 
             String opcionStr = JOptionPane.showInputDialog(null, menu, "Menú Principal", JOptionPane.INFORMATION_MESSAGE);
             int opcion = Integer.parseInt(opcionStr);
 
             switch (opcion) {
                 case 1:
-                    listarMascotas();
+                    listarUnaMascota();
                     break;
                 case 2:
-                    listarVeterinarios();
+                    listarUnVeterinario();
                     break;
                 case 3:
-                    agregarMascota();
+                    listarMascotas();
                     break;
                 case 4:
-                    agregarVeterinario();
+                    listarVeterinarios();
                     break;
                 case 5:
-                    asignarVeterinario();
+                    agregarMascota();
                     break;
                 case 6:
-                    eliminarMascota();
+                    agregarVeterinario();
                     break;
                 case 7:
-                    eliminarVeterinario();
+                    asignarVeterinario();
                     break;
                 case 8:
-                    actualizarMascota();
+                    eliminarMascota();
                     break;
                 case 9:
+                    eliminarVeterinario();
+                    break;
+                case 10:
+                    actualizarMascota();
+                    break;
+                case 11:
                     actualizarVeterinario();
                     break;
-                case 0:
+                case 12:
                     JOptionPane.showMessageDialog(null, "Saliendo del programa...");
                     System.exit(0);
                     break;
@@ -84,7 +92,20 @@ public class Programa {
             JOptionPane.showMessageDialog(null, "Error al listar las mascotas: " + e.getMessage());
         }
     }
-
+    
+    // Listar 1 mascota
+    private static void listarUnaMascota() {
+        try {
+            int buscar = Integer.parseInt(JOptionPane.showInputDialog(null, "Inserte el ID de la mascota a buscar: "));
+            MascotasDTO m = mascotaDAO.findById(buscar);
+            StringBuilder message = new StringBuilder("Mascota con ID " + buscar + ": ");
+            message.append(m.getNomMasc()).append(" - ").append(m.getTipoMasc()).append("\n");
+            JOptionPane.showMessageDialog(null, message.toString());
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al listar la mascota: " + e.getMessage());
+        }
+    }
+    
     // Listar todos los veterinarios
     private static void listarVeterinarios() {
         try {
@@ -98,9 +119,23 @@ public class Programa {
             JOptionPane.showMessageDialog(null, "Error al listar los veterinarios: " + e.getMessage());
         }
     }
+        
+    // Listar 1 veterinario
+    private static void listarUnVeterinario() {
+        try {
+            int buscar = Integer.parseInt(JOptionPane.showInputDialog(null, "Inserte el ID del veterinario a buscar: "));
+            VeterinariosDTO v = veterinarioDAO.findById(buscar);
+            StringBuilder message = new StringBuilder("Veterinario con ID " + buscar + ": ");
+            message.append(v.getNomVet()).append(" - ").append(v.getNif()).append(" - ").append(v.getTlfnVet()).append("\n");
+            JOptionPane.showMessageDialog(null, message.toString());
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al listar la mascota: " + e.getMessage());
+        }
+    }
 
     private static void agregarMascota() {
         try {
+            int id = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID de la mascota: "));
             String nombre = JOptionPane.showInputDialog("Ingrese nombre de la mascota:");
             String tipo = JOptionPane.showInputDialog("Ingrese tipo de mascota (perro, gato, otros):");
             double peso = Double.parseDouble(JOptionPane.showInputDialog("Ingrese peso de la mascota:"));
@@ -126,6 +161,7 @@ public class Programa {
 
             // Crear objeto de Mascota
             MascotasDTO nuevaMascota = new MascotasDTO();
+            nuevaMascota.setIdnumMasc(id);
             nuevaMascota.setNomMasc(nombre);
             nuevaMascota.setTipoMasc(tipo);
             nuevaMascota.setPesoMasc(peso);

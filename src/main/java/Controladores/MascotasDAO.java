@@ -113,8 +113,8 @@ public class MascotasDAO implements IMascotas {
     public int insertMascotas(MascotasDTO mascota) throws SQLException {
 
         int numFilas = 0;
-        String sql = "insert into mascotas values (idnumMasc, idnumVet, numChip, nomMasc, pesoMasc, fecnacMasc, tipoMasc)";
-
+//        String sql = "insert into mascotas values (idnumMasc, idnumVet, numChip, nomMasc, pesoMasc, fecnacMasc, tipoMasc)";
+        String sql = "insert into mascotas (idnumMasc, idnumVet, numChip, nomMasc, pesoMasc, fecnacMasc, tipoMasc) VALUES (?, ?, ?, ?, ?, ?, ?)";
         if (findById(mascota.getIdnumMasc()) != null) {
             // Existe un registro con esa pk
             // No se hace la inserción

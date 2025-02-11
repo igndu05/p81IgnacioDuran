@@ -41,7 +41,7 @@ public class MascotasDTO {
         this.idnumMasc = idnumMasc;
     }
 
-    public Integer getIdnumVet() {
+    public int getIdnumVet() {
         return idnumVet;
     }
 
