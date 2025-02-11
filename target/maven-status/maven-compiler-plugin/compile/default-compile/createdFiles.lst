@@ -1,9 +1,9 @@
-Controladores/prueba.class
 Conexion/Conexion.class
 Controladores/VeterinariosDAO.class
 Modelos/MascotasDTO.class
+Controladores/PruebaDeMascotas.class
 Modelos/VeterinariosDTO.class
 Controladores/MascotasDAO.class
+Vistas/Programa.class
 Modelos/IMascotas.class
 Modelos/IVeterinarios.class
-Conexion/Prueba.class

@@ -16,10 +16,10 @@ public class VeterinariosDTO {
     private String nif;
     private String nomVet;
     private String dirVet;
-    private int tlfnVet;
+    private String tlfnVet;
     private String emailVet;
 
-    public VeterinariosDTO(int idnumVet, String nif, String nomVet, String dirVet, int tlfnVet, String emailVet) {
+    public VeterinariosDTO(int idnumVet, String nif, String nomVet, String dirVet, String tlfnVet, String emailVet) {
         this.idnumVet = idnumVet;
         this.nif = nif;
         this.nomVet = nomVet;
@@ -47,7 +47,7 @@ public class VeterinariosDTO {
         return dirVet;
     }
 
-    public int getTlfnVet() {
+    public String getTlfnVet() {
         return tlfnVet;
     }
 
@@ -71,7 +71,7 @@ public class VeterinariosDTO {
         this.dirVet = dirVet;
     }
 
-    public void setTlfnVet(int tlfnVet) {
+    public void setTlfnVet(String tlfnVet) {
         this.tlfnVet = tlfnVet;
     }
 
@@ -82,12 +82,12 @@ public class VeterinariosDTO {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 79 * hash + this.idnumVet;
-        hash = 79 * hash + Objects.hashCode(this.nif);
-        hash = 79 * hash + Objects.hashCode(this.nomVet);
-        hash = 79 * hash + Objects.hashCode(this.dirVet);
-        hash = 79 * hash + this.tlfnVet;
-        hash = 79 * hash + Objects.hashCode(this.emailVet);
+        hash = 53 * hash + this.idnumVet;
+        hash = 53 * hash + Objects.hashCode(this.nif);
+        hash = 53 * hash + Objects.hashCode(this.nomVet);
+        hash = 53 * hash + Objects.hashCode(this.dirVet);
+        hash = 53 * hash + Objects.hashCode(this.tlfnVet);
+        hash = 53 * hash + Objects.hashCode(this.emailVet);
         return hash;
     }
 
@@ -106,9 +106,6 @@ public class VeterinariosDTO {
         if (this.idnumVet != other.idnumVet) {
             return false;
         }
-        if (this.tlfnVet != other.tlfnVet) {
-            return false;
-        }
         if (!Objects.equals(this.nif, other.nif)) {
             return false;
         }
@@ -116,6 +113,9 @@ public class VeterinariosDTO {
             return false;
         }
         if (!Objects.equals(this.dirVet, other.dirVet)) {
+            return false;
+        }
+        if (!Objects.equals(this.tlfnVet, other.tlfnVet)) {
             return false;
         }
         return Objects.equals(this.emailVet, other.emailVet);

@@ -8,6 +8,7 @@ import Modelos.VeterinariosDTO;
 import javax.swing.*;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public class Programa {
@@ -104,13 +105,13 @@ public class Programa {
             String tipo = JOptionPane.showInputDialog("Ingrese tipo de mascota (perro, gato, otros):");
             double peso = Double.parseDouble(JOptionPane.showInputDialog("Ingrese peso de la mascota:"));
             String fechaNacimientoStr = JOptionPane.showInputDialog("Ingrese fecha de nacimiento (yyyy-mm-dd):");
-//            java.sql.Date fechaNacimiento = java.sql.Date.valueOf(fechaNacimientoStr);
-            LocalDate fechaNacimiento = LocalDate.parse(fechaNacimientoStr);
+            java.sql.Date fechaNacimiento = java.sql.Date.valueOf(fechaNacimientoStr);
+            
 
-            String numeroChip = JOptionPane.showInputDialog("Ingrese número de chip (alfanumérico):");
-            int numChip = Integer.parseInt(numeroChip);
+            String numChip = JOptionPane.showInputDialog("Ingrese número de chip (alfanumérico):");
+            
 
-            if (numeroChip == null || numeroChip.trim().isEmpty()) {
+            if (numChip == null || numChip.trim().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "El número de chip no puede estar vacío.");
                 return;
             }
@@ -152,8 +153,7 @@ public class Programa {
             String nif = JOptionPane.showInputDialog("Ingrese NIF del veterinario:");
             String nombre = JOptionPane.showInputDialog("Ingrese nombre del veterinario:");
             String direccion = JOptionPane.showInputDialog("Ingrese dirección del veterinario:");
-            String telefonoStr = JOptionPane.showInputDialog("Ingrese teléfono del veterinario:");
-            int telefono = Integer.parseInt(telefonoStr);
+            String telefono = JOptionPane.showInputDialog("Ingrese teléfono del veterinario:");
             String email = JOptionPane.showInputDialog("Ingrese email del veterinario:");
 
             VeterinariosDTO nuevoVeterinario = new VeterinariosDTO();
@@ -231,10 +231,10 @@ public class Programa {
                 String nuevoNombre = JOptionPane.showInputDialog("Ingrese nuevo nombre para la mascota:");
                 double nuevoPeso = Double.parseDouble(JOptionPane.showInputDialog("Ingrese nuevo peso para la mascota:"));
                 String nuevaFechaStr = JOptionPane.showInputDialog("Ingrese nueva fecha de nacimiento (yyyy-mm-dd):");                
-                LocalDate fechaNacimiento = LocalDate.parse(nuevaFechaStr);
+                java.sql.Date nuevaFecha = java.sql.Date.valueOf(nuevaFechaStr);
                 mascota.setNomMasc(nuevoNombre);
                 mascota.setPesoMasc(nuevoPeso);
-                mascota.setFecnacMasc(fechaNacimiento);
+                mascota.setFecnacMasc(nuevaFecha);
                 mascotaDAO.updateMascotas(idMascota, mascota);
                 JOptionPane.showMessageDialog(null, "Mascota actualizada exitosamente.");
             } else {
@@ -253,8 +253,7 @@ public class Programa {
             if (veterinario != null) {
                 String nuevoNombre = JOptionPane.showInputDialog("Ingrese nuevo nombre para el veterinario:");
                 String nuevaDireccion = JOptionPane.showInputDialog("Ingrese nueva dirección para el veterinario:");
-                String nuevoTelefonoStr = JOptionPane.showInputDialog("Ingrese nuevo teléfono para el veterinario:");
-                int nuevoTelefono = Integer.parseInt(nuevoTelefonoStr);
+                String nuevoTelefono = JOptionPane.showInputDialog("Ingrese nuevo teléfono para el veterinario:");                
                 String nuevoEmail = JOptionPane.showInputDialog("Ingrese nuevo email para el veterinario:");
                 veterinario.setNomVet(nuevoNombre);
                 veterinario.setDirVet(nuevaDireccion);

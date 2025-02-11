@@ -1,9 +1,9 @@
 /home/ignacio/NetBeansProjects/p81IgnacioDuran/src/main/java/Conexion/Conexion.java
-/home/ignacio/NetBeansProjects/p81IgnacioDuran/src/main/java/Conexion/Prueba.java
 /home/ignacio/NetBeansProjects/p81IgnacioDuran/src/main/java/Controladores/MascotasDAO.java
+/home/ignacio/NetBeansProjects/p81IgnacioDuran/src/main/java/Controladores/PruebaDeMascotas.java
 /home/ignacio/NetBeansProjects/p81IgnacioDuran/src/main/java/Controladores/VeterinariosDAO.java
-/home/ignacio/NetBeansProjects/p81IgnacioDuran/src/main/java/Controladores/prueba.java
 /home/ignacio/NetBeansProjects/p81IgnacioDuran/src/main/java/Modelos/IMascotas.java
 /home/ignacio/NetBeansProjects/p81IgnacioDuran/src/main/java/Modelos/IVeterinarios.java
 /home/ignacio/NetBeansProjects/p81IgnacioDuran/src/main/java/Modelos/MascotasDTO.java
 /home/ignacio/NetBeansProjects/p81IgnacioDuran/src/main/java/Modelos/VeterinariosDTO.java
+/home/ignacio/NetBeansProjects/p81IgnacioDuran/src/main/java/Vistas/Programa.java

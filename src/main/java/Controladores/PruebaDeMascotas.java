@@ -7,6 +7,7 @@ package Controladores;
 import Conexion.Conexion;
 import Modelos.MascotasDTO;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Month;
@@ -24,9 +25,9 @@ public class PruebaDeMascotas {
         MascotasDAO mascota = new MascotasDAO();
         List<MascotasDTO> listaMascotas = new ArrayList<>();
         
-        listaMascotas.add(new MascotasDTO(1, 1, 1, "Juanito", 25.00, LocalDate.of(2022, Month.MARCH, 15), "Perro"));
-        listaMascotas.add(new MascotasDTO(2, 1, 2, "Pepe", 12.28, LocalDate.of(2020, Month.MARCH, 15), "Gato"));
-        listaMascotas.add(new MascotasDTO(3, 1, 3, "Jesus", 30.00, LocalDate.of(2018, Month.MARCH, 15), "Loro"));
+        listaMascotas.add(new MascotasDTO(1, 1, "1", "Pepe", 25.00, new Date(2015, 10, 30), "Perro"));
+        listaMascotas.add(new MascotasDTO(2, 1, "2", "Pepe", 12.28, new Date(2015, 10, 30), "Gato"));
+        listaMascotas.add(new MascotasDTO(3, 1, "3", "Jesus", 30.00, new Date(2015, 10, 30), "Loro"));
     
         try {
             

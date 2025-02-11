@@ -4,7 +4,7 @@
  */
 package Modelos;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.Objects;
 
 /**
@@ -13,17 +13,17 @@ import java.util.Objects;
  */
 public class MascotasDTO {
     private int idnumMasc;
-    private int idnumVet;
-    private int numChip;
+    private Integer idnumVet;
+    private String numChip;
     private String nomMasc;
     private double pesoMasc;
-    private LocalDate fecnacMasc;
+    private Date fecnacMasc;
     private String tipoMasc;
 
     public MascotasDTO() {
     }
 
-    public MascotasDTO(int idnumMasc, int idnumVet, int numChip, String nomMasc, double pesoMasc, LocalDate fecnacMasc, String tipoMasc) {
+    public MascotasDTO(int idnumMasc, int idnumVet, String numChip, String nomMasc, double pesoMasc, Date fecnacMasc, String tipoMasc) {
         this.idnumMasc = idnumMasc;
         this.idnumVet = idnumVet;
         this.numChip = numChip;
@@ -40,20 +40,20 @@ public class MascotasDTO {
     public void setIdnumMasc(int idnumMasc) {
         this.idnumMasc = idnumMasc;
     }
-    
-    public int getIdnumVet() {
+
+    public Integer getIdnumVet() {
         return idnumVet;
     }
-    
-    public void setIdnumVet(int idnumVet) {
+
+    public void setIdnumVet(Integer idnumVet) {
         this.idnumVet = idnumVet;
     }
 
-    public int getNumChip() {
+    public String getNumChip() {
         return numChip;
     }
 
-    public void setNumChip(int numChip) {
+    public void setNumChip(String numChip) {
         this.numChip = numChip;
     }
 
@@ -73,11 +73,11 @@ public class MascotasDTO {
         this.pesoMasc = pesoMasc;
     }
 
-    public LocalDate getFecnacMasc() {
+    public Date getFecnacMasc() {
         return fecnacMasc;
     }
 
-    public void setFecnacMasc(LocalDate fecnacMasc) {
+    public void setFecnacMasc(Date fecnacMasc) {
         this.fecnacMasc = fecnacMasc;
     }
 
@@ -90,20 +90,15 @@ public class MascotasDTO {
     }
 
     @Override
-    public String toString() {
-        return "MascotaDTO{" + "idnumMasc=" + idnumMasc + ", idnumVet=" + idnumVet + ", numChip=" + numChip + ", nomMasc=" + nomMasc + ", pesoMasc=" + pesoMasc + ", fecnacMasc=" + fecnacMasc + ", tipoMasc=" + tipoMasc + '}';
-    }
-
-    @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 17 * hash + this.idnumMasc;
-        hash = 17 * hash + this.idnumVet;
-        hash = 17 * hash + this.numChip;
-        hash = 17 * hash + Objects.hashCode(this.nomMasc);
-        hash = 17 * hash + (int) (Double.doubleToLongBits(this.pesoMasc) ^ (Double.doubleToLongBits(this.pesoMasc) >>> 32));
-        hash = 17 * hash + Objects.hashCode(this.fecnacMasc);
-        hash = 17 * hash + Objects.hashCode(this.tipoMasc);
+        int hash = 3;
+        hash = 41 * hash + this.idnumMasc;
+        hash = 41 * hash + Objects.hashCode(this.idnumVet);
+        hash = 41 * hash + Objects.hashCode(this.numChip);
+        hash = 41 * hash + Objects.hashCode(this.nomMasc);
+        hash = 41 * hash + (int) (Double.doubleToLongBits(this.pesoMasc) ^ (Double.doubleToLongBits(this.pesoMasc) >>> 32));
+        hash = 41 * hash + Objects.hashCode(this.fecnacMasc);
+        hash = 41 * hash + Objects.hashCode(this.tipoMasc);
         return hash;
     }
 
@@ -122,13 +117,10 @@ public class MascotasDTO {
         if (this.idnumMasc != other.idnumMasc) {
             return false;
         }
-        if (this.idnumVet != other.idnumVet) {
-            return false;
-        }
-        if (this.numChip != other.numChip) {
-            return false;
-        }
         if (Double.doubleToLongBits(this.pesoMasc) != Double.doubleToLongBits(other.pesoMasc)) {
+            return false;
+        }
+        if (!Objects.equals(this.numChip, other.numChip)) {
             return false;
         }
         if (!Objects.equals(this.nomMasc, other.nomMasc)) {
@@ -137,7 +129,17 @@ public class MascotasDTO {
         if (!Objects.equals(this.tipoMasc, other.tipoMasc)) {
             return false;
         }
+        if (!Objects.equals(this.idnumVet, other.idnumVet)) {
+            return false;
+        }
         return Objects.equals(this.fecnacMasc, other.fecnacMasc);
-    }    
+    }
+
+    @Override
+    public String toString() {
+        return "MascotasDTO{" + "idnumMasc=" + idnumMasc + ", idnumVet=" + idnumVet + ", numChip=" + numChip + ", nomMasc=" + nomMasc + ", pesoMasc=" + pesoMasc + ", fecnacMasc=" + fecnacMasc + ", tipoMasc=" + tipoMasc + '}';
+    }
+
+    
     
 }

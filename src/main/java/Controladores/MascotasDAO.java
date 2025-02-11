@@ -39,17 +39,17 @@ public class MascotasDAO implements IMascotas {
             ResultSet res = st.executeQuery("select * from mascotas");
             // Ahora construimos la lista, recorriendo el ResultSet y mapeando los datos
             while (res.next()) {
-                MascotasDTO v = new MascotasDTO();
+                MascotasDTO m = new MascotasDTO();
                 // Recogemos los datos de la persona, guardamos en un objeto
-                v.setIdnumMasc(res.getInt("idnumMasc"));
-                v.setIdnumVet(res.getInt("idnumVet"));
-                v.setNumChip(res.getInt("numChip"));
-                v.setNomMasc(res.getString("nomMasc"));
-                v.setPesoMasc(res.getDouble("pesoMasc"));
-                v.setFecnacMasc(res.getDate("fecnacMasc").toLocalDate());
-                v.setTipoMasc(res.getString("tipoMasc"));
+                m.setIdnumMasc(res.getInt("idnumMasc"));
+                m.setIdnumVet(res.getInt("idnumVet"));
+                m.setNumChip(res.getString("numchip"));
+                m.setNomMasc(res.getString("nomMasc"));
+                m.setPesoMasc(res.getDouble("pesoMasc"));
+                m.setFecnacMasc(res.getDate("fecNacMasc"));
+                m.setTipoMasc(res.getString("tipoMasc"));                
                 //Añadimos el objeto a la lista
-                lista.add(v);
+                lista.add(m);
             }
         }
 
@@ -97,10 +97,10 @@ public class MascotasDAO implements IMascotas {
 //                persona.setFechaNacimiento(res.getDate("fecha_nac").toLocalDate())
                 mascota.setIdnumMasc(res.getInt("idnumMasc"));
                 mascota.setIdnumVet(res.getInt("idnumVet"));
-                mascota.setNumChip(res.getInt("numChip"));
+                mascota.setNumChip(res.getString("numChip"));
                 mascota.setNomMasc(res.getString("nomMasc"));
                 mascota.setPesoMasc(res.getDouble("pesoMasc"));
-                mascota.setFecnacMasc(res.getDate("fecnacMasc").toLocalDate());
+                mascota.setFecnacMasc(res.getDate("fecnacMasc"));
                 mascota.setTipoMasc(res.getString("tipoMasc"));
                 return mascota;
             }
@@ -130,10 +130,17 @@ public class MascotasDAO implements IMascotas {
 //                prest.setDate(3, Date.valueOf(persona.getFechaNacimiento()));
                 prest.setInt(1, mascota.getIdnumMasc());
                 prest.setInt(2, mascota.getIdnumVet());
-                prest.setInt(3, mascota.getNumChip());
+                prest.setString(3, mascota.getNumChip());
                 prest.setString(4, mascota.getNomMasc());
                 prest.setDouble(5, mascota.getPesoMasc());
-                prest.setDate(6, Date.valueOf(mascota.getFecnacMasc()));
+                
+                if (mascota.getFecnacMasc()!= null) {
+                java.sql.Date sqlDate = new java.sql.Date(mascota.getFecnacMasc().getTime()); // Convertir a java.sql.Date
+                prest.setDate(6, sqlDate);  // Asignamos la fecha en el formato correcto para SQL
+                } else {
+                prest.setNull(6, java.sql.Types.DATE);  // Si la fecha es null, asignamos NULL a la base de datos
+                }
+                
                 prest.setString(7, mascota.getTipoMasc());
 
                 numFilas = prest.executeUpdate();
@@ -209,10 +216,17 @@ public class MascotasDAO implements IMascotas {
 //                prest.setDate(2, Date.valueOf(nuevosDatos.getFechaNacimiento()));
 //                prest.setInt(3, pk);
                 prest.setInt(1, nuevosDatos.getIdnumMasc());
-                prest.setInt(2, nuevosDatos.getNumChip());
+                prest.setString(2, nuevosDatos.getNumChip());
                 prest.setString(3, nuevosDatos.getNomMasc());
                 prest.setDouble(4, nuevosDatos.getPesoMasc());
-                prest.setDate(5, Date.valueOf(nuevosDatos.getFecnacMasc()));
+                
+                if (nuevosDatos.getFecnacMasc()!= null) {
+                java.sql.Date sqlDate = new java.sql.Date(nuevosDatos.getFecnacMasc().getTime());
+                prest.setDate(5, sqlDate);  // Usamos el constructor de java.sql.Date que toma un long
+                } else {
+                prest.setNull(5, java.sql.Types.DATE);  // Si la fecha es nula, asignamos null
+                }
+                
                 prest.setString(6, nuevosDatos.getTipoMasc());
 
                 numFilas = prest.executeUpdate();
@@ -231,10 +245,10 @@ public class MascotasDAO implements IMascotas {
             while (rs.next()) {
                 MascotasDTO m = new MascotasDTO();
                 m.setIdnumMasc(rs.getInt("id"));
-                m.setNumChip(rs.getInt("numchip"));
+                m.setNumChip(rs.getString("numchip"));
                 m.setNomMasc(rs.getString("nombre"));
                 m.setPesoMasc(rs.getDouble("peso"));
-                m.setFecnacMasc(rs.getDate("fecha_nac").toLocalDate());
+                m.setFecnacMasc(rs.getDate("fecha_nac"));
                 m.setTipoMasc(rs.getString("tipo"));
                 m.setIdnumVet(rs.getInt("id veterinario"));
                 lista.add(m);

@@ -43,7 +43,7 @@ public class VeterinariosDAO implements IVeterinarios {
                 v.setNif(res.getString("nif"));
                 v.setNomVet(res.getString("nomVet"));
                 v.setDirVet(res.getString("dirVet"));
-                v.setTlfnVet(res.getInt("tlfnVet"));
+                v.setTlfnVet(res.getString("tlfnVet"));
                 v.setEmailVet(res.getString("emailVet"));
                 //Añadimos el objeto a la lista
                 lista.add(v);
@@ -96,7 +96,7 @@ public class VeterinariosDAO implements IVeterinarios {
                 veterinario.setNif(res.getString("nif"));
                 veterinario.setNomVet(res.getString("nomVet"));
                 veterinario.setDirVet(res.getString("dirVet"));
-                veterinario.setTlfnVet(res.getInt("tlfnVet"));
+                veterinario.setTlfnVet(res.getString("tlfnVet"));
                 veterinario.setEmailVet(res.getString("emailVet"));
                 return veterinario;
             }
@@ -128,7 +128,7 @@ public class VeterinariosDAO implements IVeterinarios {
                 prest.setString(2, veterinario.getNif());
                 prest.setString(3, veterinario.getNomVet());
                 prest.setString(4, veterinario.getDirVet());
-                prest.setInt(5, veterinario.getTlfnVet());
+                prest.setString(5, veterinario.getTlfnVet());
                 prest.setString(6, veterinario.getEmailVet());
 
                 numFilas = prest.executeUpdate();
@@ -207,7 +207,7 @@ public class VeterinariosDAO implements IVeterinarios {
                 prest.setString(2, nuevosDatos.getNif());
                 prest.setString(3, nuevosDatos.getNomVet());
                 prest.setString(4, nuevosDatos.getDirVet());
-                prest.setInt(5, nuevosDatos.getTlfnVet());
+                prest.setString(5, nuevosDatos.getTlfnVet());
                 prest.setString(6, nuevosDatos.getEmailVet());
 
                 numFilas = prest.executeUpdate();
